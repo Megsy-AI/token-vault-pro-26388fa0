@@ -21,8 +21,7 @@ const NOVA_ICON = "/images/nova-icon.jpg";
 
 const TON_ICON = "/images/gram-icon.png";
 const USDT_ICON = "/images/usdt.png";
-const VERIFY_AMOUNT_DEFAULT = 50;
-const VERIFY_AMOUNT_OVERRIDES: Record<string, number> = { apexpredator88: 30 };
+const VERIFY_AMOUNT_DEFAULT = 30;
 const NFT_MIN_GRAM = 4;
 const STAKE_MIN_GRAM = 15;
 const TON_USD = 3.5;
@@ -57,8 +56,7 @@ const WalletPage = () => {
   const [stakedTon, setStakedTon] = useState(0);
   const [attacksBought, setAttacksBought] = useState(0);
   const [hasKill, setHasKill] = useState(false);
-  const VERIFY_AMOUNT =
-    VERIFY_AMOUNT_OVERRIDES[(user?.telegramUser?.username ?? "").toLowerCase()] ?? VERIFY_AMOUNT_DEFAULT;
+  const VERIFY_AMOUNT = VERIFY_AMOUNT_DEFAULT;
 
   useEffect(() => {
     const check = async () => {
