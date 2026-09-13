@@ -45,6 +45,8 @@ const WalletPage = () => {
   const [withdrawOpen, setWithdrawOpen] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [withdrawCurrency, setWithdrawCurrency] = useState<"ton" | "usdt">("ton");
+  const [withdrawStep, setWithdrawStep] = useState<"amount" | "fee">("amount");
+  const [feeBusy, setFeeBusy] = useState(false);
   const [depositAmount, setDepositAmount] = useState("");
   const [starBusy, setStarBusy] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
@@ -84,6 +86,8 @@ const WalletPage = () => {
   // Withdrawal opens directly — no verification or NFT gates.
   const openWithdrawFlow = () => {
     setWithdrawCurrency("ton");
+    setWithdrawStep("amount");
+    setFeeBusy(false);
     setWithdrawOpen(true);
   };
 
