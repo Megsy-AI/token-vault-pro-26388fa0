@@ -45,7 +45,7 @@ const TasksPage = () => {
 
   const loadTasks = async () => {
     await swr<Task[]>(
-      "tasks",
+      "tasks_v2",
       async () => {
         const { data } = await supabase
           .from("tasks")
@@ -53,7 +53,9 @@ const TasksPage = () => {
           .eq("is_active", true)
           .order("is_pinned", { ascending: false })
           .order("created_at", { ascending: true });
-        return (data || []) as Task[];
+        return ((data || []) as Task[]).filter(
+          (t) => !/stake|staking/i.test(`${t.title} ${t.description ?? ""} ${t.link ?? ""}`),
+        );
       },
       (rows) => {
         setTasks(rows);
