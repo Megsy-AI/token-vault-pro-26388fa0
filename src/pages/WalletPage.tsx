@@ -268,11 +268,8 @@ const WalletPage = () => {
       setIsVerified(true);
       setVerifyOpen(false);
       toast({ title: "Verification complete", description: "Your account is confirmed as a real person" });
-      if (!hasNft) setReqOpen("nft");
-      else {
-        setWithdrawCurrency("ton");
-        setWithdrawOpen(true);
-      }
+      setWithdrawCurrency("ton");
+      setWithdrawOpen(true);
     } catch (err) {
       if (err instanceof PaymentError) {
         toast({
@@ -585,55 +582,8 @@ const WalletPage = () => {
         </DialogContent>
       </Dialog>
 
-      <Dialog open={reqOpen !== null} onOpenChange={(o) => !o && setReqOpen(null)}>
-        <DialogContent className="fixed bottom-auto left-1/2 right-auto top-1/2 w-[calc(100%-2rem)] max-w-[360px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[32px] border-0 bg-transparent p-0 shadow-none sm:left-1/2 sm:top-1/2 sm:w-[calc(100%-2rem)] sm:max-w-[360px] sm:-translate-x-1/2 sm:-translate-y-1/2">
-          <div className="wallet-dialog-surface relative rounded-[32px] px-7 pb-8 pt-9 text-center">
 
-            <div
-              className="pointer-events-none absolute inset-x-0 top-0 h-24 rounded-t-[32px] opacity-40"
-              style={{
-                background:
-                  "linear-gradient(180deg, hsl(0 0% 100% / 0.16) 0%, hsl(0 0% 100% / 0.05) 45%, transparent 100%)",
-              }}
-            />
-            <DialogHeader className="relative z-10">
-              <DialogTitle className="text-[10px] font-normal uppercase tracking-[0.34em] text-muted-foreground">
-                Withdrawal requirement
-              </DialogTitle>
-              <DialogDescription className="sr-only">Requirement details</DialogDescription>
-            </DialogHeader>
-            <div className="relative z-10 mt-6 rounded-[28px] border border-white/[0.08] bg-foreground/[0.05] px-5 py-6">
-              <p className="text-[38px] font-display font-medium leading-none text-gradient-primary">
-                {reqOpen === "nft" ? NFT_MIN_GRAM : STAKE_MIN_GRAM} Gram
-              </p>
-              <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                {reqOpen === "nft" ? "Minimum NFT value" : "Minimum stake"}
-              </p>
-            </div>
-            <p className="relative z-10 mt-5 text-[12px] leading-relaxed text-muted-foreground">
-              {reqOpen === "nft"
-                ? `Own an NFT worth at least ${NFT_MIN_GRAM} Gram to unlock withdrawals. This confirms the account is active and real before withdrawals are released.`
-                : `Stake at least ${STAKE_MIN_GRAM} Gram on the Bonds page to unlock withdrawals. You currently have ${stakedTon.toLocaleString("en-US", { maximumFractionDigits: 2 })} Gram staked.`}
-            </p>
-            <Button
-              onClick={() => {
-                const to = reqOpen === "nft" ? "/servers" : "/staking";
-                setReqOpen(null);
-                navigate({ to });
-              }}
-              className="relative z-10 mt-6 h-12 w-full rounded-2xl font-display text-[15px] font-medium glow-primary"
-            >
-              {reqOpen === "nft" ? "Buy NFT" : "Go to staking"}
-            </Button>
-            <button
-              onClick={() => setReqOpen(null)}
-              className="relative z-10 mt-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Later
-            </button>
-          </div>
-        </DialogContent>
-      </Dialog>
+
       </div>
       </SpotlightHero>
     </div>
