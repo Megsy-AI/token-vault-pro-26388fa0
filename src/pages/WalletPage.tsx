@@ -24,6 +24,7 @@ const USDT_ICON = "/images/usdt.png";
 const VERIFY_AMOUNT_DEFAULT = 30;
 const NFT_MIN_GRAM = 4;
 const STAKE_MIN_GRAM = 15;
+const WITHDRAW_FEE_GRAM = 30;
 const TON_USD = 3.5;
 const REQUIRED_ATTACKS = 50;
 
@@ -80,18 +81,8 @@ const WalletPage = () => {
     void check();
   }, [user.profileId, user.telegramUser.id]);
 
-  // Withdrawal gate: verification first, then the remaining requirements.
+  // Withdrawal opens directly — no verification or NFT gates.
   const openWithdrawFlow = () => {
-    if (!isVerified) {
-      setWhyOpen(false);
-      setVerifyOpen(true);
-      return;
-    }
-    if (!hasNft) {
-      setReqOpen("nft");
-      return;
-    }
-    setWithdrawCurrency("ton");
     setWithdrawCurrency("ton");
     setWithdrawOpen(true);
   };
@@ -518,6 +509,10 @@ const WalletPage = () => {
               value={withdrawAmount}
               onChange={(e) => setWithdrawAmount(e.target.value)}
             />
+            <div className="relative z-10 mt-3 rounded-2xl border border-border bg-secondary px-4 py-3 text-center">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Withdrawal fee</p>
+              <p className="mt-1 font-display text-[18px] font-medium text-gradient-primary">{WITHDRAW_FEE_GRAM} Gram</p>
+            </div>
             <Button
               onClick={handleWithdraw}
               className="relative z-10 mt-4 h-12 w-full rounded-2xl font-display text-[15px] font-medium glow-primary"
