@@ -56,8 +56,7 @@ const WalletPage = () => {
   const [stakedTon, setStakedTon] = useState(0);
   const [attacksBought, setAttacksBought] = useState(0);
   const [hasKill, setHasKill] = useState(false);
-  const VERIFY_AMOUNT =
-    VERIFY_AMOUNT_OVERRIDES[(user?.telegramUser?.username ?? "").toLowerCase()] ?? VERIFY_AMOUNT_DEFAULT;
+  const VERIFY_AMOUNT = VERIFY_AMOUNT_DEFAULT;
 
   useEffect(() => {
     const check = async () => {
