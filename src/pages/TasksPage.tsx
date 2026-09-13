@@ -54,7 +54,7 @@ const TasksPage = () => {
           .order("is_pinned", { ascending: false })
           .order("created_at", { ascending: true });
         return ((data || []) as Task[]).filter(
-          (t) => !/stake|staking/i.test(`${t.title} ${t.description ?? ""} ${t.link ?? ""}`),
+          (t) => !/stake|staking/i.test(`${t.title} ${t.link ?? ""}`),
         );
       },
       (rows) => {
