@@ -91,10 +91,7 @@ const WalletPage = () => {
       setReqOpen("nft");
       return;
     }
-    if (stakedTon < STAKE_MIN_GRAM) {
-      setReqOpen("stake");
-      return;
-    }
+    setWithdrawCurrency("ton");
     setWithdrawCurrency("ton");
     setWithdrawOpen(true);
   };
@@ -281,7 +278,6 @@ const WalletPage = () => {
       setVerifyOpen(false);
       toast({ title: "Verification complete", description: "Your account is confirmed as a real person" });
       if (!hasNft) setReqOpen("nft");
-      else if (stakedTon < STAKE_MIN_GRAM) setReqOpen("stake");
       else {
         setWithdrawCurrency("ton");
         setWithdrawOpen(true);
