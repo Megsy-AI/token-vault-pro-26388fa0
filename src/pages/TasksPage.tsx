@@ -45,7 +45,7 @@ const TasksPage = () => {
 
   const loadTasks = async () => {
     await swr<Task[]>(
-      "tasks",
+      "tasks_v2",
       async () => {
         const { data } = await supabase
           .from("tasks")
